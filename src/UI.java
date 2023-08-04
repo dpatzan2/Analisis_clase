@@ -1,10 +1,15 @@
 import java.util.Scanner;
-
+/*
+ * 
+ */
 public class UI {
+    //Se modificafon los metodos de privados a publicos
 
-    private static void Showmenu(){
+    /*
+     * Metodo mostrar menu
+     */
+    public static void Showmenu(){
         String op = "";
-
 
         System.out.println("----------------------------------");
         System.out.println(" Programa De Palabras Palindromas ");
@@ -19,9 +24,28 @@ public class UI {
             System.out.println("Opcion: ");
             op = in.nextLine();
 
+            switch(op){
+
+                /*
+                 * Se lee el archivo
+                 */
+                case "1":
+                    System.out.println("Ha seleccionado leer archivo");
+
+                /*
+                 * Salir del programa
+                 */
+                case "2":
+                    System.out.println("Saliendo");
+            }
+
         }while(!op.equals("2"));
     }
-    private static void ShowResults(){
-        System.out.println("Mostrando");
+
+    /*
+     * Mostrar Resultados
+     */
+    public static void ShowResults(){
+        System.out.println("Mostrar Resultados");
     }
 }
