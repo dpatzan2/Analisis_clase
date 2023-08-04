@@ -6,7 +6,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class CSV_Reader_Principal {
-    public static void main(String[] args) {
+    public void csvReader() {
         String fileUrl = "https://sourceforge.net/projects/opencsv/files/opencsv/5.5/opencsv-5.5.jar";
         String filePath = "opencsv-5.5.jar";
 
@@ -18,14 +18,14 @@ public class CSV_Reader_Principal {
         }
 
         // Llamarlo para leer el archivo CSV
-        File csvFile = new File("ruta/de/tu/archivo.csv"); // Cambia "ruta/de/tu/archivo.csv" a la ubicación real de tu archivo CSV
+        File csvFile = new File("../Libro1"); // Cambia "ruta/de/tu/archivo.csv" a la ubicación real de tu archivo CSV
         String[] palabras = readCSVFile(csvFile);
         for (String palabra : palabras) {
             System.out.print(palabra + "\t");
         }
     }
 
-    public static void downloadFile(String fileUrl, String filePath) throws IOException {
+    public void downloadFile(String fileUrl, String filePath) throws IOException {
         URL url = new URL(fileUrl);
         try (InputStream in = url.openStream();
              ReadableByteChannel rbc = Channels.newChannel(in);
@@ -34,7 +34,7 @@ public class CSV_Reader_Principal {
         }
     }
 
-    public static String[] readCSVFile(File csvFile) {
+    public String[] readCSVFile(File csvFile) {
         CSVReader reader = null; // Declare the reader variable outside the try block
         try {
             reader = new CSVReader(new FileReader(csvFile)); // Initialize the reader inside the try block
