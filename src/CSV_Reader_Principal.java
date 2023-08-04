@@ -1,9 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
@@ -24,7 +19,10 @@ public class CSV_Reader_Principal {
 
         // Llamarlo para leer el archivo CSV
         File csvFile = new File("ruta/de/tu/archivo.csv"); // Cambia "ruta/de/tu/archivo.csv" a la ubicación real de tu archivo CSV
-        readCSVFile(csvFile);
+        String[] palabras = readCSVFile(csvFile);
+        for (String palabra : palabras) {
+            System.out.print(palabra + "\t");
+        }
     }
 
     public static void downloadFile(String fileUrl, String filePath) throws IOException {
@@ -36,21 +34,44 @@ public class CSV_Reader_Principal {
         }
     }
 
-    public static void readCSVFile(File csvFile) {
-        try (CSVReader reader = new CSVReader(new BufferedReader(new InputStreamReader(System.in)))) {
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                // Procesa cada línea del archivo CSV aquí
-                for (String cell : nextLine) {
-                    System.out.print(cell + "\t");
-                }
-                System.out.println();
+    public static String[] readCSVFile(File csvFile) {
+        CSVReader reader = null; // Declare the reader variable outside the try block
+        try {
+            reader = new CSVReader(new FileReader(csvFile)); // Initialize the reader inside the try block
+
+            // Count the number of lines in the CSV file to initialize the array size
+            int numLines = 0;
+            while (reader.readNext() != null) {
+                numLines++;
             }
+
+            String[] palabras = new String[numLines];
+            reader.close();
+
+            // Re-open the CSVReader to read data again
+            reader = new CSVReader(new FileReader(csvFile));
+
+            String[] nextLine;
+            int i = 0;
+            while ((nextLine = reader.readNext()) != null) {
+                // Assuming the CSV file has only one cell per line
+                palabras[i++] = nextLine[0];
+            }
+            return palabras;
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         } catch (CsvValidationException e) {
             throw new RuntimeException(e);
+        } finally {
+            // Make sure to close the reader in the finally block to release resources
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
-
 }
