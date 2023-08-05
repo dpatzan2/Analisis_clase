@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class String_compator {
+    //Codigo generado por ChatGPT
     public static void main(String[] args){
         String filePath = "./Libro1.csv"; // Cambia esta ruta por la ubicación real de tu archivo CSV
         String[] palabras = CSV_Reader_Principal.readCSVFile(filePath);
