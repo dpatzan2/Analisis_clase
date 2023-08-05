@@ -26,14 +26,12 @@ public  class CSV_Reader_Principal {
         return palabras.toArray(new String[0]);
     }
 
-    public static void generarArray() {
-        String filePath = "./Libro1.csv"; // Cambia esta ruta por la ubicación real de tu archivo CSV
+    public static String[] generarArray() {
+        String filePath = "./Libro1.csv";
         String[] palabras = readCSVFile(filePath);
 
-        // Mostrar todas las palabras en el array
-        for (String palabra : palabras) {
-            System.out.println(palabra);
-        }
+        return palabras; // Retornamos el array de palabras
     }
+
 
 }
