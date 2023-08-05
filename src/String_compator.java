@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class String_compator {
+<<<<<<< HEAD
     public static void main(String[] args){
         // Codigo sacado de Chat GPT
         // Array de palabras
@@ -30,4 +28,7 @@ public class String_compator {
         }
 
     }
+=======
+
+>>>>>>> b0ff238142bb5ac949485d4b4243edfd2c05dacf
 }
