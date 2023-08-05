@@ -1,47 +1,36 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 public class String_compator {
+    //Codigo generado por ChatGPT
     public static void main(String[] args){
-        // Codigo sacado de Chat GPT
-        // Array de palabras
-        Scanner scanner = new Scanner(System.in);
+        String filePath = "./Libro1.csv"; // Cambia esta ruta por la ubicación real de tu archivo CSV
+        String[] palabras = CSV_Reader_Principal.readCSVFile(filePath);
 
-        // Pedir la cantidad de palabras que se ingresarán
-        System.out.print("Ingrese la cantidad de palabras: ");
-        int cantidadPalabras = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea pendiente después de nextInt()
+        // Generar un nuevo array con las palabras palíndromas
+        String[] palindromas = obtenerPalindromas(palabras);
 
-        // Crear el array para almacenar las palabras
-        String[] palabras = new String[cantidadPalabras];
-
-        // Pedir las palabras y almacenarlas en el array
-        for (int i = 0; i < cantidadPalabras; i++) {
-            System.out.print("Ingrese la palabra " + (i + 1) + ": ");
-            palabras[i] = scanner.nextLine();
+        // Mostrar las palabras palíndromas en el nuevo array
+        System.out.println("Palíndromas:");
+        for (String palabra : palindromas) {
+            System.out.println(palabra);
         }
+    }
 
-        // Crear un ArrayList para almacenar los caracteres
-        ArrayList<Character> caracteres = new ArrayList<>();
+    public static String[] obtenerPalindromas(String[] palabras) {
+        List<String> palindromasList = new ArrayList<>();
 
-        // Recorrer el array de palabras
         for (String palabra : palabras) {
-            // Recorrer cada palabra y agregar los caracteres al ArrayList
-            for (char caracter : palabra.toCharArray()) {
-                caracteres.add(caracter);
+            if (esPalindromo(palabra)) {
+                palindromasList.add(palabra);
             }
         }
 
-        // Convertir el ArrayList en un array de caracteres
-        char[] arrayCaracteres = new char[caracteres.size()];
-        for (int i = 0; i < caracteres.size(); i++) {
-            arrayCaracteres[i] = caracteres.get(i);
-        }
+        return palindromasList.toArray(new String[0]);
+    }
 
-        // Imprimir el array de caracteres
-        for (char c : arrayCaracteres) {
-            System.out.print(c + " ");
-        }
-
+    public static boolean esPalindromo(String palabra) {
+        String reversed = new StringBuilder(palabra).reverse().toString();
+        return palabra.equalsIgnoreCase(reversed);
     }
 }
