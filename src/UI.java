@@ -8,6 +8,7 @@ public class UI {
     /*
      * Metodo mostrar menu
      */
+
     public static void Showmenu(){
         String op = "";
 
@@ -31,6 +32,7 @@ public class UI {
                  */
                 case "1":
                     System.out.println("Ha seleccionado leer archivo");
+                    CSV_Reader_Principal.generarArray();
 
                 /*
                  * Salir del programa
